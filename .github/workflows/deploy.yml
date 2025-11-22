@@ -53,12 +53,16 @@ jobs:
             # Build the application
             npm run build
             
+            # Allow Node.js to bind to port 80 without sudo
+            NODE_PATH=$(which node)
+            sudo setcap 'cap_net_bind_service=+ep' $NODE_PATH
+            
             # Stop existing process
-            sudo pkill -f "next start" || true
+            pkill -f "next start" || true
             sleep 2
             
-            # Start the application in background on port 80 (requires sudo)
-            nohup sudo npm start > /home/ec2-user/webapp.log 2>&1 &
+            # Start the application in background on port 80
+            nohup npm start > /home/ec2-user/webapp.log 2>&1 &
             
             echo "Deployment completed successfully!"
           EOF
