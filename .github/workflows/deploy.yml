@@ -54,11 +54,11 @@ jobs:
             npm run build
             
             # Stop existing process
-            pkill -f "next start" || true
+            sudo pkill -f "next start" || true
             sleep 2
             
-            # Start the application in background
-            nohup npm start > /home/ec2-user/webapp.log 2>&1 &
+            # Start the application in background on port 80 (requires sudo)
+            nohup sudo npm start > /home/ec2-user/webapp.log 2>&1 &
             
             echo "Deployment completed successfully!"
           EOF
