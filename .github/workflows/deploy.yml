@@ -15,12 +15,12 @@ jobs:
 
       - name: Deploy to EC2
         env:
-          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+          WEBAPP_SSH_KEY: ${{ secrets.WEBAPP_SSH_KEY }}
           EC2_HOST: 13.60.40.220
           EC2_USER: ec2-user
         run: |
           # Save SSH key
-          echo "$EC2_SSH_KEY" > ec2_key.pem
+          echo "$WEBAPP_SSH_KEY" > ec2_key.pem
           chmod 600 ec2_key.pem
           
           # Create .ssh directory if it doesn't exist
