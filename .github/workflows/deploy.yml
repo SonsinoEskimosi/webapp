@@ -38,7 +38,7 @@ jobs:
             cd /home/ec2-user/webapp || {
               echo "App directory not found. Setting up for first time..."
               cd /home/ec2-user
-              git clone ${{ github.repository }} webapp || true
+              git clone https://github.com/${{ github.repository }}.git webapp || true
               cd webapp
             }
             
